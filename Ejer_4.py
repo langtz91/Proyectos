@@ -34,9 +34,7 @@ class CarritoDeCompra:
         self.productos = []
 
     def agregar_item(self, producto):
-        if producto in self.productos:
-            pass
-        else:
+        if not producto in self.productos:
             self.productos.append(producto)
     
     def eliminar_item(self, producto):
@@ -77,15 +75,14 @@ print(producto.nombre)
 carrito = CarritoDeCompra()
 carrito.agregar_item(producto1)
 carrito.agregar_item(producto2)
-carrito.agregar_item(producto4)
 
 print("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _")
 carrito.obtener_items()
 
 print("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _")
 try:
-    carrito.eliminar_item(producto)
     carrito.eliminar_item(producto4)
+    carrito.eliminar_item(producto1)
 except Exception:
     print("El producto a eliminar debe estar en el carrito")
 carrito.obtener_items()
