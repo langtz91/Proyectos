@@ -81,12 +81,12 @@ class juegos_comprados:
 
 class carrito_compra:
     def __init__(self):
-        self.carrito = Inventario()
+        self.carrito = []
     
     def agregar_compra(self, titulo , plataforma):
-        comprados = []
-        for game in self.carrito.juegos:
-            print(game.juegos.titulo)
+        for game in self.juegos:
+            if game.titulo == titulo and game.plataforma == plataforma:
+                self.carrito.append(game)
                 
 
                 
