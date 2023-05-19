@@ -30,13 +30,10 @@ class Inventario:
             raise Exception("El juego no se encuentra en el inventario")
         
     def buscar_juego(self, titulo_o_genero):
-        conteo_juego = 0
         for game in self.juegos:
             if titulo_o_genero == game.titulo or titulo_o_genero == game.genero:
-                game.mostrar_info()
-                conteo_juego += 1 
-        if conteo_juego == 0:
-             print("No se encontraron resultados en la busqueda")
+                return game
+        return None
             
     def obtener_items(self):
         k = 1
@@ -44,8 +41,7 @@ class Inventario:
             print(k)
             game.mostrar_info()
             k += 1
-    
-
+        
 class Games_movil(Games):
     def __init__(self, titulo, plataforma, precio, cantidad_stock, genero):
         super().__init__(titulo, plataforma, precio, cantidad_stock, genero)
@@ -53,7 +49,7 @@ class Games_movil(Games):
 
     def mostrar_info(self):
         print(f"Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Cantidad en stock: {self.cantidad_stock}, Género: {self.genero}")
-            
+   
 class Games_consola(Games):
     def __init__(self, titulo, plataforma, precio, cantidad_stock, genero, clasificacion):
         super().__init__(titulo, plataforma, precio, cantidad_stock, genero)
@@ -68,27 +64,30 @@ class Games_pc(Games):
         super().__init__(titulo, plataforma, precio, cantidad_stock, genero)
         self.plataforma = "PC"
         self.requisitos_minimos = requisitos_minimos
-
+    
     def mostrar_info(self):
         print(f"Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Cantidad en stock: {self.cantidad_stock}, Género: {self.genero}, Requisitos mínimos: {self.requisitos_minimos}") 
 
-class juegos_comprados:
-    def __init__(self, titulo, plataforma, cantidad):
-        self.titulo = titulo
-        self.plataforma = plataforma
-        self.cantidad = cantidad
 
-
-class carrito_compra:
+class Carrito_compras:
     def __init__(self):
         self.carrito = []
-    
-    def agregar_compra(self, titulo , plataforma):
-        for game in self.juegos:
-            if game.titulo == titulo and game.plataforma == plataforma:
-                self.carrito.append(game)
-                
 
-                
+    def agregar_juego(self, juego):
+        self.carrito.append(juego)
+    
+    def obtener_items(self):
+        print("Lista de elementos en el carrito: ")
+        for juego in self.carrito:
+            juego.mostrar_info()
+    
+    # def compra(self):
+    #     k = 1
+    #     for game in self.:
+    #         print(k)
+    #         game.mostrar_info()
+    #         k += 1
+
+
 
    
