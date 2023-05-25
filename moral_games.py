@@ -1,92 +1,165 @@
 class Games:
-    def __init__(self, titulo, plataforma, precio, cantidad_stock, genero):
+    def __init__(self, codigo, titulo, plataforma, precio, cantidad_stock, genero,):
         self.titulo = titulo
         self.plataforma = plataforma
         self.precio = precio
         self.cantidad_stock = cantidad_stock
-        self.genero = genero   
+        self.genero = genero 
+        self.codigo = codigo  
 
 class Inventario:
     def __init__(self):
-        self.juegos = []
+        self.inventario = []
 
     def agregar_juego(self, juego):
         duplicado = 0
-        for game in self.juegos:
+        for game in self.inventario:
             if juego.titulo == game.titulo and juego.plataforma == game.plataforma:
                 duplicado += 1
         if duplicado == 0:
-            self.juegos.append(juego)
+            self.inventario.append(juego)
         else:
             raise Exception("El juego ya se encuentra en el inventario")
         
     def eliminar_juego(self, titulo, plataforma):
         duplicado = 0
-        for game in self.juegos:
+        for game in self.inventario:
             if titulo == game.titulo and plataforma == game.plataforma:             
-                self.juegos.remove(game)
+                self.inventario.remove(game)
                 duplicado += 1          
         if duplicado == 0:
             raise Exception("El juego no se encuentra en el inventario")
         
     def buscar_juego(self, titulo_o_genero):
-        for game in self.juegos:
-            if titulo_o_genero == game.titulo or titulo_o_genero == game.genero:
-                return game
-        return None
-            
-    def obtener_items(self):
+        print("Resultado de la busqueda: ")
         k = 1
-        for game in self.juegos:
+        for game in self.inventario:
+            if titulo_o_genero == game.titulo or titulo_o_genero == game.genero:
+                print(k)
+                game.mostrar_info()
+                k += 1
+    
+    def buscar_compra(self, codigo):
+        for game in self.inventario:
+            if codigo == game.codigo:
+                return game
+    
+    def obtener_items(self):
+        print("Lista de juegos en el inventario: ")
+        k = 1
+        for game in self.inventario:
             print(k)
             game.mostrar_info()
             k += 1
-        
+
+
 class Games_movil(Games):
-    def __init__(self, titulo, plataforma, precio, cantidad_stock, genero):
-        super().__init__(titulo, plataforma, precio, cantidad_stock, genero)
+    def __init__(self, codigo, titulo, plataforma, precio, cantidad_stock, genero):
+        super().__init__(codigo, titulo, plataforma, precio, cantidad_stock, genero)
         self.plataforma = "movil"
 
     def mostrar_info(self):
-        print(f"Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Cantidad en stock: {self.cantidad_stock}, Género: {self.genero}")
-   
+        print(f"Código: {self.codigo}, Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Cantidad en stock: {self.cantidad_stock}, Género: {self.genero}")
+    
+    def mostrar_compra(self):
+        print(f"Código: {self.codigo}, Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Género: {self.genero}")
+
+    def mod_cantidad_stock(self, codigo, cantidad_actual):
+        if codigo == self.codigo:
+            self.cantidad_stock = cantidad_actual
+
+    def resta_stock_compra(self):
+        self.cantidad_stock -= 1
+  
 class Games_consola(Games):
-    def __init__(self, titulo, plataforma, precio, cantidad_stock, genero, clasificacion):
-        super().__init__(titulo, plataforma, precio, cantidad_stock, genero)
+    def __init__(self, codigo, titulo, plataforma, precio, cantidad_stock, genero, clasificacion):
+        super().__init__(codigo, titulo, plataforma, precio, cantidad_stock, genero)
         self.clasificacion = clasificacion
         
-
     def mostrar_info(self):
-        print(f"Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Cantidad en stock: {self.cantidad_stock}, Género: {self.genero}, Clasificación: {self.clasificacion}") 
+        print(f"Código: {self.codigo}, Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Cantidad en stock: {self.cantidad_stock}, Género: {self.genero}, Clasificación: {self.clasificacion}") 
+
+    def mostrar_compra(self):
+        print(f"Código: {self.codigo}, Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Género: {self.genero}, Clasificación: {self.clasificacion}")
+
+    def mod_cantidad_stock(self, codigo, cantidad_nueva):
+        if codigo == self.codigo:
+            self.cantidad_stock = cantidad_nueva
+    
+    def mod_precio(self, codigo, precio_nuevo):
+        if codigo == self.codigo:
+            self.precio = precio_nuevo
+        
+    def resta_stock_compra(self):
+        self.cantidad_stock -= 1
+
 
 class Games_pc(Games):
-    def __init__(self, titulo, plataforma, precio, cantidad_stock, genero, requisitos_minimos):
-        super().__init__(titulo, plataforma, precio, cantidad_stock, genero)
+    def __init__(self, codigo, titulo, plataforma, precio, cantidad_stock, genero, requisitos_minimos):
+        super().__init__(codigo, titulo, plataforma, precio, cantidad_stock, genero)
         self.plataforma = "PC"
         self.requisitos_minimos = requisitos_minimos
     
     def mostrar_info(self):
-        print(f"Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Cantidad en stock: {self.cantidad_stock}, Género: {self.genero}, Requisitos mínimos: {self.requisitos_minimos}") 
+        print(f"Código: {self.codigo}, Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Cantidad en stock: {self.cantidad_stock}, Género: {self.genero}, Requisitos mínimos: {self.requisitos_minimos}") 
 
+    def mostrar_compra(self):
+        print(f"Código: {self.codigo}, Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Género: {self.genero}, Requisitos mínimos: {self.requisitos_minimos}")
 
-class Carrito_compras:
+    def mod_cantidad_stock(self, codigo, cantidad_nueva):
+        if codigo == self.codigo:
+            self.cantidad_stock = cantidad_nueva
+    
+    def mod_precio(self, codigo, precio_nuevo):
+        if codigo == self.codigo:
+            self.precio = precio_nuevo
+
+    def resta_stock_compra(self):
+        self.cantidad_stock -= 1
+        
+
+class CarritoCompras:
     def __init__(self):
         self.carrito = []
 
-    def agregar_juego(self, juego):
-        self.carrito.append(juego)
+    def agregar_juego_carrito(self, juego, unidades):
+        for i in range(0, unidades):
+            self.carrito.append(juego)
+
+    def eliminar_juego_carrito(self, codigo):
+        for game in self.carrito:
+            self.carrito_nuevo = []
+            if game.codigo != codigo:
+                self.carrito_nuevo.append(game)
+        self.carrito.clear()
+        for game in self.carrito_nuevo:
+            self.carrito.append(game)
+                
+                #else:
+                #raise Exception("El juego no se encuentra en el carrito de compras")
     
-    def obtener_items(self):
+    def total_compra(self):
+        total = 0
+        for game in self.carrito:
+            total += game.precio
+        return print(f"Total costo de los productos del carrito = {total}")
+
+    def confimar_compra(self):
+        for game in self.carrito:
+            game.resta_stock_compra()
+        self.carrito.clear()
+
+    def carrito_2(self):
+        self.carrito_nuevo = []
+
+
+    def obtener_items_carrito(self):
         print("Lista de elementos en el carrito: ")
-        for juego in self.carrito:
-            juego.mostrar_info()
-    
-    # def compra(self):
-    #     k = 1
-    #     for game in self.:
-    #         print(k)
-    #         game.mostrar_info()
-    #         k += 1
+        k = 1
+        for game in self.carrito:
+            print(k)
+            game.mostrar_compra()
+            k += 1
 
 
 
