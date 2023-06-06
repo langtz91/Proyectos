@@ -1,8 +1,23 @@
-lista = [0,1,1,1,1,2,3,4,1,1]
+import moral_games
+inventario = moral_games.Inventario()
+juego = moral_games.GamesMovil(5500, "PES", "", 2000, 3, "DEPORTES")
+inventario.agregar_juego
+juego = moral_games.GamesMovil(5501, "FIFA", "", 5000, 5, "DEPORTES")
+inventario.agregar_juego(juego)
+juego = moral_games.GamesConsola(5502, "FIFA", "PS4", 120000, 8, "DEPORTES", "E")
+inventario.agregar_juego(juego)
+juego = moral_games.GamesConsola(5503, "FIFA", "XBOX", 150000, 4, "DEPORTES", "E")
+inventario.agregar_juego(juego)
+juego = moral_games.GamesConsola(5504, "MORTAL COMBAT", "PS4", 90000, 6, "DEPORTE", "M")
+inventario.agregar_juego(juego)
+juego = moral_games.GamesPc(5505, "NBA", "", 60000, 5, "DEPORTES", "(2GB de RAM, procesador core i5, tarjeta gráfica NVIDIA 1080, disco duro de 500GB)")
+inventario.agregar_juego(juego)
+juego = moral_games.GamesPc(5506, "NASCAR", "", 40000, 2, "DEPORTES", "(16GB de RAM, procesador core i9, tarjeta gráfica GTX 1650, disco duro de 1TB)")
 
-
-print(lista)
-
-lista.clear()
-
-print(lista)
+print("Hola, bienvenidos a la tienda de videojuegos Moral De Perro Game")
+print("Elija una de las siguientes opciones: ")
+print("1) Ver la lista de los juegos de la tienda") 
+print("2) Buscar video juego por nombre o genero") 
+print("3) Comprar video juego") 
+print("4) Dividir")
+print("5) Salir")

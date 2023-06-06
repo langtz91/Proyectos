@@ -1,4 +1,4 @@
-class Games:
+class Game:
     def __init__(self, codigo, titulo, plataforma, precio, cantidad_stock, genero,):
         self.titulo = titulo
         self.plataforma = plataforma
@@ -6,6 +6,18 @@ class Games:
         self.cantidad_stock = cantidad_stock
         self.genero = genero 
         self.codigo = codigo  
+
+    def modificar_cantidad_stock(self, codigo, cantidad_nueva):
+        if codigo == self.codigo:
+            self.cantidad_stock = cantidad_nueva
+    
+    def modificar_precio(self, codigo, precio_nuevo):
+        if codigo == self.codigo:
+            self.precio = precio_nuevo
+        
+    def resta_stock_compra(self):
+        self.cantidad_stock -= 1
+
 
 class Inventario:
     def __init__(self):
@@ -53,7 +65,7 @@ class Inventario:
             k += 1
 
 
-class Games_movil(Games):
+class GamesMovil(Game):
     def __init__(self, codigo, titulo, plataforma, precio, cantidad_stock, genero):
         super().__init__(codigo, titulo, plataforma, precio, cantidad_stock, genero)
         self.plataforma = "movil"
@@ -64,14 +76,8 @@ class Games_movil(Games):
     def mostrar_compra(self):
         print(f"Código: {self.codigo}, Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Género: {self.genero}")
 
-    def mod_cantidad_stock(self, codigo, cantidad_actual):
-        if codigo == self.codigo:
-            self.cantidad_stock = cantidad_actual
-
-    def resta_stock_compra(self):
-        self.cantidad_stock -= 1
   
-class Games_consola(Games):
+class GamesConsola(Game):
     def __init__(self, codigo, titulo, plataforma, precio, cantidad_stock, genero, clasificacion):
         super().__init__(codigo, titulo, plataforma, precio, cantidad_stock, genero)
         self.clasificacion = clasificacion
@@ -82,19 +88,8 @@ class Games_consola(Games):
     def mostrar_compra(self):
         print(f"Código: {self.codigo}, Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Género: {self.genero}, Clasificación: {self.clasificacion}")
 
-    def mod_cantidad_stock(self, codigo, cantidad_nueva):
-        if codigo == self.codigo:
-            self.cantidad_stock = cantidad_nueva
-    
-    def mod_precio(self, codigo, precio_nuevo):
-        if codigo == self.codigo:
-            self.precio = precio_nuevo
-        
-    def resta_stock_compra(self):
-        self.cantidad_stock -= 1
 
-
-class Games_pc(Games):
+class GamesPc(Game):
     def __init__(self, codigo, titulo, plataforma, precio, cantidad_stock, genero, requisitos_minimos):
         super().__init__(codigo, titulo, plataforma, precio, cantidad_stock, genero)
         self.plataforma = "PC"
@@ -105,17 +100,6 @@ class Games_pc(Games):
 
     def mostrar_compra(self):
         print(f"Código: {self.codigo}, Título: {self.titulo}, Plataforma: {self.plataforma}, Precio: ${self.precio}, Género: {self.genero}, Requisitos mínimos: {self.requisitos_minimos}")
-
-    def mod_cantidad_stock(self, codigo, cantidad_nueva):
-        if codigo == self.codigo:
-            self.cantidad_stock = cantidad_nueva
-    
-    def mod_precio(self, codigo, precio_nuevo):
-        if codigo == self.codigo:
-            self.precio = precio_nuevo
-
-    def resta_stock_compra(self):
-        self.cantidad_stock -= 1
         
 
 class CarritoCompras:
@@ -134,6 +118,7 @@ class CarritoCompras:
         self.carrito.clear()
         for game in self.carrito_nuevo:
             self.carrito.append(game)
+        self.carrito_nuevo.clear()
                 
                 #else:
                 #raise Exception("El juego no se encuentra en el carrito de compras")

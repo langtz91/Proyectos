@@ -1,20 +1,20 @@
 import moral_games
 inventario = moral_games.Inventario()
-#juego = moral_games.Games_movil("pes", "", 2000, 3, "deportes")
-juego = moral_games.Games_movil(5501, "fifa", "", 5000, 5, "deportes")
+#juego = moral_games.GamesMovil("pes", "", 2000, 3, "deportes")
+juego = moral_games.GamesMovil(5501, "fifa", "", 5000, 5, "deportes")
 inventario.agregar_juego(juego)
-# juego = moral_games.Games_consola("fifa", "Ps4", 5000, 5, "deportes", "B")
+# juego = moral_games.GamesConsola("fifa", "Ps4", 5000, 5, "deportes", "B")
 # inventario.agregar_juego(juego)
-# juego = moral_games.Games_consola("fifa", "Xbox", 5000, 5, "deportes", "C")
+# juego = moral_games.GamesConsola("fifa", "Xbox", 5000, 5, "deportes", "C")
 # inventario.agregar_juego(juego)
 
 # inventario.obtener_items()
 
-juego = moral_games.Games_consola(5502, "pelea", "Ps4", 5000, 5, "deportes", "A")
+juego = moral_games.GamesConsola(5502, "pelea", "Ps4", 5000, 5, "deportes", "A")
 inventario.agregar_juego(juego)
 # inventario.obtener_items()
 
-juego = moral_games.Games_pc(5503, "pelea", "", 5000, 5, "deportes", "(2GB de RAM, procesador core i5, tarjeta gráfica NVIDIA 1080, disco duro de 500GB)")
+juego = moral_games.GamesPc(5503, "pelea", "", 5000, 5, "deportes", "(2GB de RAM, procesador core i5, tarjeta gráfica NVIDIA 1080, disco duro de 500GB)")
 inventario.agregar_juego(juego)
 # inventario.obtener_items()
 print("_______________")
@@ -38,9 +38,9 @@ for game in carritocompra.carrito:
     print(game.cantidad_stock)
     print(game.precio)
 
-juego.mod_cantidad_stock(5503, 8)
+juego.modificar_cantidad_stock(5503, 8)
 #juego.resta_stock_compra()
-juego.mod_precio(5503, 3000)
+#-----juego.modificar_precio(5503, 3000)
 print("___________________")
 for game in carritocompra.carrito:
     print(game.cantidad_stock)
@@ -56,6 +56,6 @@ for game in carritocompra.carrito:
     #print(game.titulo)
 #inventario.buscar_juego("pelea") 
 print("???") 
-for game in carritocompra.carrito:
-    print(game.cantidad_stock)
-    print(game.precio)
+#-----for game in carritocompra.carrito:
+    #print(game.cantidad_stock)
+    #print(game.precio)
