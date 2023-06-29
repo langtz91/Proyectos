@@ -112,14 +112,9 @@ class CarritoCompras:
 
     def eliminar_juego_carrito(self, codigo):
         for game in self.carrito:
-            self.carrito_nuevo = []
-            if game.codigo != codigo:
-                self.carrito_nuevo.append(game)
-        self.carrito.clear()
-        for game in self.carrito_nuevo:
-            self.carrito.append(game)
-        self.carrito_nuevo.clear()
-                
+            while game.codigo == codigo:
+                self.carrito.remove(game)
+
                 #else:
                 #raise Exception("El juego no se encuentra en el carrito de compras")
     
@@ -145,7 +140,3 @@ class CarritoCompras:
             print(k)
             game.mostrar_compra()
             k += 1
-
-
-
-   

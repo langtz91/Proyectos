@@ -32,13 +32,13 @@ print("_____________________________")
 #for i in range(0, n):
     #carritocompra.agregar_juego_carrito(juego_a_guardar)
 carritocompra.agregar_juego_carrito(juego_a_guardar, 5)
-#carritocompra.eliminar_juego_carrito(5503)
+carritocompra.eliminar_juego_carrito(5503)
 #carritocompra.obtener_items_carrito()
 for game in carritocompra.carrito:
     print(game.cantidad_stock)
     print(game.precio)
 
-juego.modificar_cantidad_stock(5503, 8)
+#juego.modificar_cantidad_stock(5503, 8)
 #juego.resta_stock_compra()
 #-----juego.modificar_precio(5503, 3000)
 print("___________________")
